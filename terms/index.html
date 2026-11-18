@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — WeiXiao Game Studio</title>
+<meta name="description" content="Terms of Service for WeiXiao Game Studio titles and products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0D12; --ink-2:#0F141B; --ink-3:#141A23;
+    --paper:#E8E4DA; --jade:#5FBFA8; --jade-2:#8FE0CB; --jade-dim:#2A5A50;
+    --gold:#C9A961; --gold-2:#E3C98A; --cinnabar:#A8322A;
+    --body:#A9B4C2; --muted:#6C7A8C; --line:#1E2938;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ink);
+    background-image:
+      radial-gradient(760px 520px at 88% -6%, rgba(201,169,97,.08), transparent 62%),
+      radial-gradient(700px 500px at 6% 8%, rgba(95,191,168,.09), transparent 62%);
+    color:var(--body);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2{font-family:'Noto Serif SC',Georgia,serif;font-weight:500;line-height:1.28;color:var(--paper)}
+  a{color:var(--jade)}
+  .wrap{max-width:850px;margin:0 auto;padding:0 30px}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(10,13,18,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .seal{width:26px;height:26px;flex:none;border:1px solid var(--gold);border-radius:3px;display:grid;place-items:center;
+    box-shadow:0 0 14px rgba(201,169,97,.24)}
+  .seal span{font-family:'Noto Serif SC',serif;font-size:.64rem;color:var(--gold);line-height:1}
+  .brand .nm{font-family:'Noto Serif SC',serif;font-weight:600;font-size:.94rem;letter-spacing:.05em;color:var(--paper)}
+  .nav .back{font-size:.72rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .nav .back:hover{color:var(--jade)}
+
+  .head{padding:76px 0 40px;border-bottom:1px solid var(--line)}
+  .head .zh{display:block;font-family:'Noto Serif SC',serif;font-size:.76rem;letter-spacing:.4em;color:var(--gold);margin-bottom:20px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.9rem);margin-bottom:16px}
+  .meta{font-size:.74rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  main{padding:36px 0 76px}
+  .intro{
+    border-left:2px solid var(--gold);background:rgba(15,20,27,.7);
+    padding:20px 24px;margin-bottom:44px;color:var(--body);font-weight:200;
+  }
+  .caps{
+    display:block;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:.8rem;font-weight:400;line-height:1.7;letter-spacing:.01em;color:var(--gold-2);
+  }
+  .blk{margin-bottom:36px}
+  .blk h2{font-size:1.06rem;margin-bottom:14px;display:flex;align-items:baseline;gap:16px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+  .blk h2 .zh{font-family:'Noto Serif SC',serif;font-size:.76rem;letter-spacing:.22em;color:var(--gold);flex:none}
+  p{margin-bottom:11px;color:var(--body);font-weight:200}
+  p:last-child{margin-bottom:0}
+  ul{list-style:none;margin:10px 0 0}
+  li{position:relative;padding-left:24px;margin-bottom:11px;color:var(--body);font-weight:200}
+  li:before{content:"";position:absolute;left:4px;top:.8em;width:7px;height:1px;background:var(--jade-dim)}
+  li:last-child{margin-bottom:0}
+  strong{color:var(--paper);font-weight:500}
+  .notice{
+    border:1px solid var(--cinnabar);background:rgba(168,50,42,.10);
+    padding:20px 24px;color:var(--paper);font-weight:300;
+  }
+
+  .contactbox{border:1px solid var(--line);background:var(--ink-2);padding:38px 32px;margin-top:48px;text-align:center;position:relative;overflow:hidden}
+  .contactbox:before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(480px 280px at 50% 0%, rgba(95,191,168,.13), transparent 64%)}
+  .contactbox > *{position:relative;z-index:2}
+  .contactbox .zh{display:block;font-family:'Noto Serif SC',serif;font-size:.76rem;letter-spacing:.4em;color:var(--gold);margin-bottom:20px}
+  .contactbox h2{font-size:1.32rem;margin-bottom:14px}
+  .contactbox p{color:var(--body);margin-bottom:18px;font-weight:200}
+  .contactbox .ent{font-family:'Noto Serif SC',serif;font-weight:500;font-size:1rem;color:var(--paper);margin-bottom:16px;letter-spacing:.04em}
+  .contactbox .mbox{display:inline-block;border:1px solid var(--jade-dim);background:rgba(10,13,18,.6);padding:13px 24px;border-radius:2px}
+  .contactbox a{font-size:.9rem;word-break:break-all;color:var(--jade)}
+  .contactbox a:hover{color:var(--jade-2);text-shadow:0 0 14px rgba(95,191,168,.5)}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 46px}
+  footer .frow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  footer .cp{font-size:.74rem;color:var(--muted)}
+  footer nav{display:flex;gap:24px}
+  footer nav a{font-size:.68rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  footer nav a:hover{color:var(--jade)}
+  @media(max-width:600px){.blk h2{gap:12px}.contactbox{padding:28px 20px}.head{padding:52px 0 30px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="seal"><span>微</span></span><span class="nm">WeiXiao Game Studio</span></a>
+    <a class="back" href="/">← Return</a>
+  </div>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <span class="zh">二 · 条款</span>
+    <h1>Terms of Service</h1>
+    <div class="meta">Effective 18 November 2026</div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <div class="intro">
+      <strong>Introduction.</strong> These Terms of Service constitute a legal agreement between you
+      and the developer of WeiXiao Game Studio. ("we," "our," or "us").
+      <span class="caps">BY DOWNLOADING, INSTALLING, OR RETAINING A PRODUCT FOR MORE THAN TEN (10) DAYS,
+      YOU AGREE TO BE BOUND BY THESE TERMS. IF YOU DO NOT AGREE WITH THESE TERMS AND CONDITIONS, YOU
+      MAY NOT DOWNLOAD OR USE THE PRODUCT AND MUST DELETE IT IMMEDIATELY.</span>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">壹</span>License</h2>
+      <ul>
+        <li>You acknowledge that you have only a non-exclusive and limited right to use the object code version of the Products for non-commercial purposes within the validity period of the agreement.</li>
+        <li>You may make a single copy of the Products in object code form for archival or backup purposes.</li>
+        <li>You must include all Notices on all copies of the Products.</li>
+        <li>You may not reverse engineer, decompile, or disassemble the Products or attempt to gain access to the source code, except as expressly permitted by applicable law.</li>
+        <li>You may not assign or transfer the Products or any rights or obligations under these Terms without prior written consent from the developer.</li>
+        <li>Your rights under these Terms will automatically terminate if you breach any material obligations. Upon termination, you must destroy all copies of the Products immediately.</li>
+      </ul>
+      <p style="margin-top:12px">All rights not expressly granted are reserved.</p>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">贰</span>Infringement Indemnity</h2>
+      <p>The developer, its affiliates, subsidiaries, or licensors shall not be liable for any claims arising from:</p>
+      <ul>
+        <li>Willful or negligent acts by anyone other than the Products provider.</li>
+        <li>The combination, operation, or use of the Products with any equipment, devices, or software not provided by the developer.</li>
+        <li>Changes or modifications to the Product.</li>
+      </ul>
+      <p style="margin-top:12px">To the fullest extent permitted by law, this section states the entire liability of the developer, its affiliates, subsidiaries, and licensors, as well as your sole remedy for any infringement claims.</p>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">叁</span>Limited Warranty</h2>
+      <p>The developer does not represent or warrant that the Products will operate uninterrupted or error-free, especially in the following cases:</p>
+      <ul>
+        <li>Unauthorized modification or changes to the Products.</li>
+        <li>Accidents, negligence, misuse, or abuse.</li>
+        <li>Exposure to environmental, power, or operating conditions outside the specifications provided by the developer.</li>
+      </ul>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">肆</span>Disclaimer and Limitation of Liability</h2>
+      <p>Except as expressly set forth in these Terms:</p>
+      <ul>
+        <li>The developer, its affiliates, subsidiaries, or licensors make no other warranties, express or implied, including warranties of merchantability and fitness for a particular purpose.</li>
+        <li>Any implied warranties imposed by law are limited to those contained in these Terms, and to the extent permitted by law, the developer disclaims all other warranties.</li>
+      </ul>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">伍</span>User Judgment</h2>
+      <ul>
+        <li>Some functions of the Products may cause certain programs, functions, or files to be stopped, deleted, or uninstalled.</li>
+        <li>Before using the Products, you should carefully read the instructions to determine whether they are suitable for your purposes, needs, and safety requirements.</li>
+        <li>Once you install the Product and/or perform any operation, you take full responsibility for its use.</li>
+      </ul>
+      <p style="margin-top:12px">We provide a <a href="/privacy/"><strong>Privacy Policy</strong></a> as an integral part of this agreement, which you must read and agree to before installing and using the Product.</p>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">陆</span>Copyright Policy</h2>
+      <ul>
+        <li>No end user may use the Products to infringe the intellectual property rights of others, including but not limited to patents, trademarks, trade secrets, copyrights, and other proprietary rights.</li>
+        <li>If you are a copyright owner or an authorized representative and believe that any content infringes on your copyright, you may file a notice under the Digital Millennium Copyright Act (DMCA) by providing us with:</li>
+      </ul>
+      <ul>
+        <li>A physical or electronic signature of a person authorized to act on behalf of the owner or agent of the allegedly infringing exclusive right.</li>
+        <li>Identification of the copyrighted work that you claim has been infringed.</li>
+      </ul>
+    </div>
+
+    <div class="blk">
+      <h2><span class="zh">柒</span>Disclaimer</h2>
+      <div class="notice">This product is "not suitable for teenagers" as some advertisements may contain broad or inappropriate content.</div>
+    </div>
+
+    <div class="contactbox">
+      <span class="zh">联 络</span>
+      <h2>Contact Us</h2>
+      <p>If you have any questions or concerns about these Terms of Service, please contact us at:</p>
+      <div class="ent">WeiXiao Game Studio.</div>
+      <div class="mbox"><a href="mailto:dahanomi27@gmail.com">dahanomi27@gmail.com</a></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <div class="cp">© 2026 WeiXiao Game Studio</div>
+      <nav><a href="/">Home</a><a href="/privacy/">Privacy</a></nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

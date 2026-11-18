@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeiXiao Game Studio — Cultivate Stillness</title>
+<meta name="description" content="WeiXiao Game Studio crafts contemplative games for mobile — quiet systems, long horizons, nothing that wastes your hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0D12;
+    --ink-2:#0F141B;
+    --ink-3:#141A23;
+    --mist:#1B2431;
+    --paper:#E8E4DA;
+    --jade:#5FBFA8;
+    --jade-2:#8FE0CB;
+    --jade-dim:#2A5A50;
+    --gold:#C9A961;
+    --gold-2:#E3C98A;
+    --cinnabar:#A8322A;
+    --body:#A9B4C2;
+    --muted:#6C7A8C;
+    --line:#1E2938;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--body);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:16px;font-weight:300;line-height:1.82;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Noto Serif SC',Georgia,serif;font-weight:500;
+    line-height:1.22;letter-spacing:.005em;color:var(--paper);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px;position:relative;z-index:3}
+
+  /* vertical chinese accent */
+  .vhan{
+    writing-mode:vertical-rl;font-family:'Noto Serif SC',serif;
+    font-size:.76rem;letter-spacing:.42em;color:var(--muted);
+    text-transform:uppercase;
+  }
+
+  /* ---------- header ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:70;background:rgba(10,13,18,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(30,41,56,.8)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+  .brand{display:flex;align-items:center;gap:13px}
+  .seal{
+    width:30px;height:30px;flex:none;border:1px solid var(--jade);border-radius:3px;
+    display:grid;place-items:center;
+    box-shadow:0 0 16px rgba(95,191,168,.28), inset 0 0 10px rgba(95,191,168,.12);
+  }
+  .seal span{font-family:'Noto Serif SC',serif;font-size:.72rem;color:var(--jade);line-height:1}
+  .brand .nm{font-family:'Noto Serif SC',serif;font-weight:600;font-size:1rem;letter-spacing:.05em;color:var(--paper)}
+  .nav ul{display:flex;gap:32px;list-style:none}
+  .nav ul a{font-size:.76rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .2s ease}
+  .nav ul a:hover{color:var(--jade)}
+  .nav .cta{
+    font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--jade);border:1px solid var(--jade-dim);padding:10px 20px;border-radius:2px;
+    transition:background .2s ease,color .2s ease,box-shadow .2s ease;
+  }
+  .nav .cta:hover{background:rgba(95,191,168,.12);box-shadow:0 0 22px rgba(95,191,168,.22)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:130px 0 90px}
+  .hero .sky{
+    position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(900px 640px at 72% 18%, rgba(95,191,168,.14), transparent 62%),
+      radial-gradient(760px 560px at 22% 68%, rgba(201,169,97,.10), transparent 64%),
+      linear-gradient(180deg,#080B10 0%,#0C1119 46%,#101822 76%,#0A0D12 100%);
+  }
+  .disc{
+    position:absolute;right:14%;top:16%;width:190px;height:190px;border-radius:50%;z-index:0;
+    background:radial-gradient(circle at 40% 36%, #F0E2BE 0%, var(--gold) 44%, #8C7440 78%, #4A3E22 100%);
+    box-shadow:0 0 120px rgba(201,169,97,.34), 0 0 40px rgba(201,169,97,.2);
+    opacity:.92;
+  }
+  .mountains{position:absolute;left:0;right:0;bottom:0;z-index:1;pointer-events:none}
+  .mountains svg{display:block;width:100%;height:auto}
+  .mist{
+    position:absolute;left:0;right:0;bottom:0;height:46%;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg, transparent 0%, rgba(10,13,18,.5) 52%, rgba(10,13,18,.94) 100%);
+  }
+  .hero .wrap{position:relative;z-index:4}
+  .hero .side{position:absolute;right:-6px;top:50%;transform:translateY(-50%);z-index:4;display:flex;align-items:center;gap:14px}
+  .hero .side:before{content:"";width:1px;height:96px;background:linear-gradient(180deg,transparent,var(--line),transparent)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.72rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--jade);border:1px solid var(--jade-dim);border-radius:2px;
+    padding:8px 16px;margin-bottom:34px;
+  }
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--jade);box-shadow:0 0 8px var(--jade);display:block}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.4rem);max-width:15ch;margin-bottom:14px}
+  .hero h1 .zh{
+    display:block;font-size:.26em;letter-spacing:.5em;color:var(--gold);
+    margin-bottom:22px;text-transform:uppercase;
+  }
+  .hero h1 em{font-style:normal;color:var(--jade)}
+  .hero p.lead{font-size:1.04rem;max-width:52ch;margin-bottom:42px;color:var(--body);font-weight:200}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;font-size:.76rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+    padding:15px 30px;border-radius:2px;transition:all .2s ease;
+  }
+  .btn-primary{background:var(--jade);color:#07120F;box-shadow:0 0 26px rgba(95,191,168,.3)}
+  .btn-primary:hover{background:var(--jade-2);box-shadow:0 0 36px rgba(95,191,168,.48);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* ---------- stats ---------- */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(15,20,27,.6)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:32px 18px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .v{font-family:'Noto Serif SC',serif;font-weight:500;font-size:1.9rem;line-height:1;color:var(--gold-2);margin-bottom:9px}
+  .stat .k{font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  section{padding:104px 0}
+  .shead{max-width:58ch;margin-bottom:56px}
+  .shead .zh{display:block;font-family:'Noto Serif SC',serif;font-size:.78rem;letter-spacing:.4em;color:var(--jade);margin-bottom:18px}
+  .shead h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-bottom:20px}
+  .shead p{color:var(--body);font-weight:200}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .card{background:var(--ink-2);padding:38px 30px;transition:background .22s ease}
+  .card:hover{background:var(--ink-3)}
+  .card .zh{font-family:'Noto Serif SC',serif;font-size:.74rem;letter-spacing:.3em;color:var(--gold);display:block;margin-bottom:22px}
+  .card h3{font-size:1.12rem;margin-bottom:12px}
+  .card p{font-size:.92rem;color:var(--body);font-weight:200}
+
+  /* flagship */
+  .flag{
+    display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line);background:var(--ink-2);
+    position:relative;overflow:hidden;
+  }
+  .flag .txt{padding:52px 44px;border-right:1px solid var(--line)}
+  .flag .txt .zh{font-family:'Noto Serif SC',serif;font-size:.74rem;letter-spacing:.3em;color:var(--jade);display:block;margin-bottom:20px}
+  .flag .txt h2{font-size:clamp(1.5rem,3vw,2.15rem);margin-bottom:20px}
+  .flag .txt p{font-size:.96rem;margin-bottom:14px;font-weight:200;color:var(--body)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .tag{font-size:.66rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--jade);border:1px solid var(--jade-dim);padding:6px 12px;border-radius:2px}
+  .flag .art{
+    position:relative;display:grid;place-items:center;min-height:430px;overflow:hidden;
+    background:
+      radial-gradient(460px 340px at 50% 40%, rgba(95,191,168,.16), transparent 66%),
+      linear-gradient(180deg,#0A1014,#0E1720 60%,#0A0D12);
+  }
+  .flag .art .ring{
+    position:absolute;border-radius:50%;border:1px solid rgba(95,191,168,.16);
+  }
+  .flag .art .ring:nth-child(1){width:300px;height:300px}
+  .flag .art .ring:nth-child(2){width:216px;height:216px;border-color:rgba(201,169,97,.22)}
+  .flag .art .ring:nth-child(3){width:136px;height:136px;border-color:rgba(95,191,168,.3)}
+  .flag .art .glyph{
+    position:relative;z-index:2;width:110px;height:110px;border:1px solid var(--jade);border-radius:3px;
+    display:grid;place-items:center;
+    box-shadow:0 0 40px rgba(95,191,168,.3), inset 0 0 26px rgba(95,191,168,.14);
+    background:rgba(10,20,24,.5);
+  }
+  .flag .art .glyph span{
+    font-family:'Noto Serif SC',serif;font-size:2.1rem;color:var(--jade-2);line-height:1;
+    text-shadow:0 0 20px rgba(95,191,168,.6);
+  }
+
+  /* principles */
+  .plist{border-top:1px solid var(--line)}
+  .prow{display:grid;grid-template-columns:90px 1fr 1.2fr;gap:0;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .prow .zh{font-family:'Noto Serif SC',serif;font-size:.82rem;letter-spacing:.24em;color:var(--gold)}
+  .prow h3{font-size:1.04rem;font-weight:500}
+  .prow p{font-size:.9rem;color:var(--body);font-weight:200;padding-left:26px}
+
+  /* contact */
+  .contact{border:1px solid var(--line);background:var(--ink-2);padding:52px 46px;position:relative;overflow:hidden}
+  .contact:before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(560px 340px at 12% 0%, rgba(95,191,168,.12), transparent 64%),
+               radial-gradient(500px 320px at 92% 100%, rgba(201,169,97,.10), transparent 64%);
+  }
+  .contact > *{position:relative;z-index:2}
+  .contact .g2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .contact h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:16px}
+  .contact p{color:var(--body);font-weight:200}
+  .boxes{display:flex;flex-direction:column;gap:12px}
+  .mbox{border:1px solid var(--line);background:rgba(10,13,18,.6);padding:16px 20px;border-radius:2px}
+  .mbox small{display:block;font-size:.64rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .mbox a{font-size:.92rem;color:var(--jade);word-break:break-all}
+  .mbox a:hover{color:var(--jade-2);text-shadow:0 0 14px rgba(95,191,168,.5)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:34px 0 50px;margin-top:8px}
+  footer .frow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  footer .cp{font-size:.76rem;color:var(--muted)}
+  footer nav{display:flex;gap:26px}
+  footer nav a{font-size:.7rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  footer nav a:hover{color:var(--jade)}
+
+  @media(max-width:920px){
+    .nav ul{display:none}
+    .hero{min-height:auto;padding:110px 0 70px}
+    .disc{width:130px;height:130px;right:8%;top:12%}
+    .hero .side{display:none}
+    .stats .wrap{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+    .cards{grid-template-columns:1fr}
+    .flag{grid-template-columns:1fr}
+    .flag .txt{border-right:0;border-bottom:1px solid var(--line);padding:34px 26px}
+    .flag .art{order:-1;min-height:320px}
+    .prow{grid-template-columns:56px 1fr;row-gap:8px}
+    .prow p{grid-column:1/-1;padding-left:0}
+    .contact{padding:34px 24px}
+    .contact .g2{grid-template-columns:1fr;gap:30px}
+    section{padding:66px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="seal"><span>微</span></span><span class="nm">WeiXiao Game Studio</span></a>
+    <ul>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="cta" href="#contact">Write to us</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="sky"></div>
+  <div class="disc"></div>
+  <div class="mountains">
+    <svg viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,300 L120,238 L210,286 L330,196 L430,262 L520,214 L640,290 L760,206 L890,268 L1010,222 L1130,284 L1250,232 L1360,278 L1440,244 L1440,420 L0,420 Z"
+            fill="#12202B" opacity="0.72"/>
+      <path d="M0,340 L140,292 L250,330 L380,272 L500,326 L620,286 L740,336 L870,288 L990,332 L1120,296 L1250,338 L1370,300 L1440,330 L1440,420 L0,420 Z"
+            fill="#0E1A24" opacity="0.9"/>
+      <path d="M0,376 L160,348 L300,372 L450,340 L600,374 L760,346 L910,378 L1060,350 L1210,380 L1350,354 L1440,374 L1440,420 L0,420 Z"
+            fill="#0A141C"/>
+    </svg>
+  </div>
+  <div class="mist"></div>
+
+  <div class="wrap">
+    <span class="eyebrow"><i></i>Independent Mobile Studio</span>
+    <h1>
+      <span class="zh">微晓 · 手游工坊</span>
+      Cultivate <em>stillness</em>.
+    </h1>
+    <p class="lead">
+      WeiXiao Game Studio builds contemplative games for phones. Slow systems, long horizons,
+      and nothing in them that spends your attention without giving something back.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#work">Enter the work</a>
+      <a class="btn btn-ghost" href="#contact">Write to us</a>
+    </div>
+  </div>
+  <div class="side"><span class="vhan">WeiXiao · MMXXVI</span></div>
+</div>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="v">2019</div><div class="k">Established</div></div>
+    <div class="stat"><div class="v">23</div><div class="k">Titles</div></div>
+    <div class="stat"><div class="v">35M</div><div class="k">Installs</div></div>
+    <div class="stat"><div class="v">0</div><div class="k">Forced Waits</div></div>
+  </div>
+</div>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="shead">
+      <span class="zh">一 · 工坊</span>
+      <h2>Fewer systems, held longer.</h2>
+      <p>
+        We build games that ask for a minute, not an evening. Each one is a single clear idea,
+        refined until nothing extra remains — and then supported for years instead of abandoned
+        at the next release window.
+      </p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="zh">静</span>
+        <h3>Quiet by design</h3>
+        <p>No timers that punish you for leaving, no streaks that break, no countdown offers. Nothing in our games decays while you live your life.</p>
+      </div>
+      <div class="card">
+        <span class="zh">简</span>
+        <h3>One idea per title</h3>
+        <p>A game should be explainable in a sentence. If the pitch needs a diagram, the design is not finished yet.</p>
+      </div>
+      <div class="card">
+        <span class="zh">续</span>
+        <h3>Kept, not shelved</h3>
+        <p>Titles from 2020 still receive compatibility work. A release is the beginning of upkeep, never the end of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <span class="zh">二 · 作品</span>
+      <h2>The flagship, and what it refuses to do.</h2>
+    </div>
+    <div class="flag">
+      <div class="txt">
+        <span class="zh">旗 舰</span>
+        <h2>WeiXiao — a puzzle with no clock.</h2>
+        <p>
+          Our flagship release is a hand-authored deduction puzzle. There is no timer, no fail
+          state, and no resource that drains while you think about the next move.
+        </p>
+        <p>
+          Each board introduces a single idea, then asks you to combine it with everything the
+          game has already taught. Hints are free and unlimited, progress is written on every
+          move, and the whole game runs offline.
+        </p>
+        <div class="tags">
+          <span class="tag">Puzzle</span>
+          <span class="tag">Offline</span>
+          <span class="tag">No Fail State</span>
+          <span class="tag">Free to Start</span>
+        </div>
+      </div>
+      <div class="art">
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        <div class="glyph"><span>仙</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="code" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <span class="zh">三 · 律</span>
+      <h2>Four rules we do not break.</h2>
+    </div>
+    <div class="plist">
+      <div class="prow">
+        <div class="zh">壹</div>
+        <h3>No manufactured waiting</h3>
+        <p>Energy bars and cooldowns are not added to games that do not need them. Difficulty belongs in the puzzle, never in the shop.</p>
+      </div>
+      <div class="prow">
+        <div class="zh">贰</div>
+        <h3>Price before the tap</h3>
+        <p>Anything purchasable is priced and described before you commit. No invented scarcity, no recurring “limited” offers.</p>
+      </div>
+      <div class="prow">
+        <div class="zh">叁</div>
+        <h3>Minimal collection</h3>
+        <p>We gather only what is required to run and improve the game, stated plainly in our <a href="/privacy/" style="color:var(--jade);border-bottom:1px solid var(--jade-dim)">privacy policy</a>.</p>
+      </div>
+      <div class="prow">
+        <div class="zh">肆</div>
+        <h3>Fix before feature</h3>
+        <p>A known crash is repaired before new content begins. A broken build is not a roadmap item — it is a broken product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" id="contact">
+  <div class="contact">
+    <div class="g2">
+      <div>
+        <span class="zh" style="display:block;font-family:'Noto Serif SC',serif;font-size:.78rem;letter-spacing:.4em;color:var(--jade);margin-bottom:18px">四 · 联 络</span>
+        <h2>Write to the studio</h2>
+        <p>
+          Publishers, partners and players reach the same inbox, and it is read by the people
+          who build the games. Enquiries are answered in the order they arrive.
+        </p>
+      </div>
+      <div class="boxes">
+        <div class="mbox">
+          <small>General &amp; Player Support</small>
+          <a href="mailto:dahanomi27@gmail.com">dahanomi27@gmail.com</a>
+        </div>
+        <div class="mbox">
+          <small>Business &amp; Publishing</small>
+          <a href="mailto:dahanomi27@gmail.com">dahanomi27@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <div class="cp">© 2026 WeiXiao Game Studio. All rights reserved.</div>
+      <nav>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
